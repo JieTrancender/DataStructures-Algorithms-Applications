@@ -13,12 +13,31 @@
 #include "test.hpp"
 #include <iostream>
 
+
 int main()
 {
-	MAQ::ArrayQueue<MAQ::PC> test;
-	MAQ::PC pc_1 = { "admin_1","123456" };
-	MAQ::PC pc_2 = { "admin_2","123456" };
-	test.push(pc_1);
-	test.push(pc_2);
+	try
+	{
+		MAQ::ArrayQueue<MAQ::PC> test;
+		MAQ::PC pc_1 = { "admin_1","_Trancender" };
+		MAQ::PC pc_2 = { "admin_2","ShaoJie@qq.com" };
+		test.push(pc_1);
+		test.push(pc_2);
+		std::cout << test.size() << std::endl;
+		std::cout << test.front() << std::endl;
+		std::cout << test.back() << std::endl;
+		test.pop();
+		std::cout << test.size() << std::endl;
+		std::cout << test.front() << std::endl;
+		std::cout << test.back() << std::endl;
+		test.pop();
+		std::cout << test.front() << std::endl;
+		std::cout << test.back() << std::endl;
+		std::cout << test.size() << std::endl;
+	}
+	catch (std::string str)
+	{
+		std::cout << str << std::endl;
+	}
     return 0;
 }
