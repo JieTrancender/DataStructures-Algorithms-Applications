@@ -7,4 +7,4 @@ In C++ Language
 
 @Github:www.github.com/JieTrancender
 
-@Time:20th October(The lastest time)
+@Time:20th October 2015(The lastest time)
