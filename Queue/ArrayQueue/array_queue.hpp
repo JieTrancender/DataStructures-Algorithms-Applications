@@ -37,7 +37,7 @@ namespace MAQ
 	private:
 		anytype *m_queue;
 		int m_queue_front;
-		int m_queue_back;	//队列尾，队列长度 = m_queue_back + 1,当队列为空时，m_queue_back = -1
+		int m_queue_back;
 		int m_queue_length;
 	};
 
@@ -47,7 +47,7 @@ namespace MAQ
 	{
 		m_queue_length = initial_capacity;
 		m_queue = new anytype[m_queue_length];
-		m_queue_front = m_queue_back = 0;
+		m_queue_front = m_queue_back = -1;
 	}
 
 	//函数功能:析构函数
@@ -68,20 +68,39 @@ namespace MAQ
 	template <typename anytype>
 	int ArrayQueue<anytype>::size() const
 	{
-		return m_queue_back - m_queue_front;
+		if (m_queue_back < m_queue_length - 1)
+		{
+			return m_queue_back - m_queue_front;
+		}
+		else
+		{
+			return m_queue_back + 1 + m_queue_length - m_queue_front;
+		}
 	}
 
 	//函数功能:返回头元素的引用
 	template <typename anytype>
 	anytype & ArrayQueue<anytype>::front()
 	{
-		return m_queue[m_queue_front % m_queue_length];
+		if (this->empty())
+		{
+			std::ostringstream os;
+			os << "The queue is empty.";
+			throw os.str();
+		}
+		return m_queue[(m_queue_front + 1) % m_queue_length];
 	}
 
 	//函数功能:返回尾元素的引用
 	template <typename anytype>
 	anytype & ArrayQueue<anytype>::back()
 	{
+		if (this->empty())
+		{
+			std::ostringstream os;
+			os << "The queue is empty.";
+			throw os.str();
+		}
 		return m_queue[m_queue_back % m_queue_length];
 	}
 
@@ -129,13 +148,13 @@ namespace MAQ
 		//判断原数组是否形成环
 		if (start <= 1)
 		{
-			std::copy(m_queue + m_queue_front, m_queue + m_queue_back + 1, new_queue);
+			std::copy(m_queue + start, m_queue + m_queue_length - 1 + start, new_queue);
 		}
 
 		//原数组形成环
 		else
 		{
-			std::copy(m_queue + m_queue_front, m_queue + m_queue_length, new_queue);
+			std::copy(m_queue + start, m_queue + m_queue_length, new_queue);
 			std::copy(m_queue, m_queue + m_queue_back + 1, new_queue + m_queue_length - start);
 		}
 
