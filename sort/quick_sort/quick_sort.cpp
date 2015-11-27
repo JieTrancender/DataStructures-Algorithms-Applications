@@ -55,3 +55,4 @@ void Print(anytype element[], int n)
     copy(element, element + n, ostream_iterator<anytype>(cout, " "));
     cout << endl;
 }
+ 
