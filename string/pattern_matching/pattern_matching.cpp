@@ -1,17 +1,18 @@
 #include <iostream>
 #include <string>
+#include <vector>
 
 using namespace std;
 
-//求字串位置的定位函数
-int Index(string str1, string str2);
+//字符串暴力模式匹配算法
+int PatternMatching(string str1, string str2);
 
 int main()
 {
     string str1 = "BBC ABCDAB ABCDABCDABDE";
     string str2 = "ABCDABD";
     cout << str1 << "'s size = " << str1.size() << ", " << str2 << "'s size = " << str2.size() << endl;
-    int index = Index(str1, str2);
+    int index = PatternMatching(str1, str2);
     cout << "Index = " << index << endl;
     if(index >= 0)
         cout << index << ": " << str1.at(index) << endl;
@@ -20,7 +21,7 @@ int main()
     return 0;
 }
 
-int Index(string str1, string str2)
+int PatternMatching(string str1, string str2)
 {
     int i = 0, j = 0;
     while(i < str1.size() && j < str2.size())
