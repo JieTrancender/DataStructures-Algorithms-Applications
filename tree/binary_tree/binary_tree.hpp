@@ -144,9 +144,12 @@ namespace mtl
 	template <typename anytype>
 	void BinaryTree<anytype>::postOrder(BinaryTreeNode<anytype> *root)
 	{
-		postOrder(root->m_left_child);
-		postOrder(root->m_right_child);
-		BinaryTree<anytype>::visit(root);
+		if (nullptr != root)
+		{
+			postOrder(root->m_left_child);
+			postOrder(root->m_right_child);
+			BinaryTree<anytype>::visit(root);
+		}
 	}
 
 	//私有按层遍历

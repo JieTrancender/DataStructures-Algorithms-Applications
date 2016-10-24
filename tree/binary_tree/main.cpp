@@ -25,6 +25,9 @@ int main(int argc, char* argv[])
 	std::cout << "This tree's height is " << my_binary_tree.height() << std::endl;
 	std::cout << "The root is " << my_binary_tree.getRoot() << std::endl;
 
+	//std::cout << "PostOrder: ";
+	//my_binary_tree.postOrder(visit);
+
 	std::cout << "PreOrder: ";
 	my_binary_tree.preOrder(visit);
 
@@ -34,7 +37,11 @@ int main(int argc, char* argv[])
 	std::cout << "PostOrder: ";
 	my_binary_tree.postOrder(visit);
 
-	std::cout << std::endl;
+	std::cout << "LevelOrder: ";
+	my_binary_tree.levelOrder(visit);
+
+	//std::cout << std::endl;
+	//最后的时候回多一行空格，这不是bug，而是析构函数调用erase()函数后向遍历最后输出的一个回车
 
 	return 0;
 }
